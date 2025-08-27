@@ -3,7 +3,7 @@
 Kleine Portfolio-Seite mit Beispielen aus meiner Umschulung zum Fachinformatiker Anwendungsentwicklung (2025–2027).  
 Die Seite ist mit **HTML, CSS und JavaScript** umgesetzt und enthält erste praktische Mini-Projekte.
 
-👉 **Live-Demo:** [GitHub Pages ansehen](https://<DEIN-USERNAME>.github.io/Portfolio-Website/)
+**Live-Demo:** [GitHub Pages ansehen](https://<DEIN-USERNAME>.github.io/Portfolio-Website/)
 
 ---
 
