@@ -1,8 +1,7 @@
-
 # Portfolio Website
 
 Dies ist eine kleine Übungsseite aus meiner Umschulung zum Fachinformatiker Anwendungsentwicklung (2025–2027).  
-Ziel ist es, einfache Projekte mit HTML, CSS und JavaScript auszuprobieren und den Umgang mit GitHub Pages zu lernen.
+Ich nutze sie, um einfache Projekte in HTML, CSS und JavaScript umzusetzen und erste Erfahrungen mit GitHub Pages zu sammeln.
 
 ## Live-Demo und Quellcode
 - Live-Demo: https://entilsa.github.io/portfolio/  
@@ -20,9 +19,14 @@ Die Seite soll meinen aktuellen Lernstand zeigen. Ich bin im 6. Monat der Umschu
 - Preset-Button für Wechselkurse  
 - Light/Dark-Mode Umschalter  
 - weitere kleine JavaScript-Demos
-  
+
+## Screenshot
+![Seitenansicht](assets/preview.png)  
+*(Screenshot folgt noch.)*
 
 ## Kontakt
 Benjamin Bannach  
 benjamin.bannach.dev@gmail.com  
-Duisburg · Region Ruhrgebiet
+Duisburg · Region Ruhrgebiet  
+
+LinkedIn: https://www.linkedin.com/in/benjamin-bannach-b52717362
