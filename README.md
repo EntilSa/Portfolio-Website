@@ -1,27 +1,62 @@
 # Portfolio Website
-Persönliche Portfolio Website mit Beispielen meiner Projekte in HTML, CSS, JavaScript und Python
 
-# Portfolio
+Kleine Portfolio-Seite mit Beispielen aus meiner Umschulung zum Fachinformatiker Anwendungsentwicklung (2025–2027).  
+Die Seite ist mit **HTML, CSS und JavaScript** umgesetzt und enthält erste praktische Mini-Projekte.
 
-Willkommen zu meinem persönlichen Portfolio!  
-Dieses Repository enthält die Quellcodes und Ressourcen für meine Portfolio-Website, auf der ich Projekte und Übungen aus meiner Umschulung zum Fachinformatiker für Anwendungsentwicklung präsentiere.
+👉 **Live-Demo:** [GitHub Pages ansehen](https://<DEIN-USERNAME>.github.io/Portfolio-Website/)
+
+---
 
 ## Inhalte
-- **Webentwicklung:** HTML, CSS, JavaScript
-- **Programmierung:** Python, kleine Tools und Übungsprojekte
-- **Projektbeispiele:** Praxisnahe Anwendungen, die meine Fähigkeiten in Frontend- und Backend-Entwicklung zeigen
+
+- **Preis-/Gewinnrechner**  
+  Berechnet Nettoerlöse nach Abzug von Gebühren, Versand, Einkauf und Mehrwertsteuer.  
+  Praxisnahes Beispiel aus dem E-Commerce.
+
+- **Währungsrechner**  
+  Umrechnung zwischen EUR, USD, GBP und CNY.  
+  Wechselkurse können manuell angepasst werden.  
+  Typische Aufgabe im Import/Handel.
+
+- **Button-Demo (Fun-Interaktion)**  
+  Einfaches Event-Handling mit DOM-Manipulation.
+
+---
 
 ## Ziel
-Ziel dieser Website ist es, potenziellen Arbeitgebern und Projektpartnern einen Überblick über meine Fähigkeiten, meinen Programmierstil und meine bisherigen Arbeiten zu geben.
+
+Die Seite dient als **Übungs- und Vorzeigeprojekt**:  
+- erste Schritte mit Frontend-Technologien (HTML/CSS/JS)  
+- saubere Struktur und Kommentare  
+- praxisnahe Aufgaben aus E-Commerce- und Alltagskontext
+
+---
 
 ## Technologien
-- HTML5 & CSS3
-- JavaScript (Vanilla JS)
-- Python
-- Git & GitHub
+
+- HTML5 & CSS3 (Flex/Grid, Responsive Design, Dark Theme)
+- JavaScript (DOM-Manipulation, Event-Handling, Rechenlogik)
+- Git & GitHub (Versionierung, Deployment via GitHub Pages)
+
+---
+
+## Geplante Erweiterungen
+
+- Preset-Button für aktuelle Wechselkurse
+- Light/Dark Mode Umschalter
+- weitere kleine JS-Demos (Formularvalidierung, Passwortgenerator)
+
+---
+
+## Screenshot
+
+![Seitenansicht](assets/preview.png)  
+*(Screenshot folgt – kann noch ergänzt werden.)*
+
+---
 
 ## Kontakt
-Falls Sie Fragen haben oder mit mir zusammenarbeiten möchten:
-- **E-Mail:** benjamin.bannach@example.com  
-- **LinkedIn:** [LinkedIn-Profil](https://www.linkedin.com/)  
-- **GitHub:** [Mein GitHub-Profil](https://github.com/deinusername)
+
+Benjamin Bannach  
+📧 amunzhul@gmail.com 
+📍 Region Ruhrgebiet (Duisburg / Düsseldorf / Essen)
