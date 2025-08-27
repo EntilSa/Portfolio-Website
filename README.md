@@ -58,5 +58,5 @@ Die Seite dient als **Übungs- und Vorzeigeprojekt**:
 ## Kontakt
 
 Benjamin Bannach  
-📧 amunzhul@gmail.com 
+📧 benjamin.bannach.dev@gmail.com
 📍 Region Ruhrgebiet (Duisburg / Düsseldorf / Essen)
