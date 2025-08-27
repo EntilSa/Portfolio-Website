@@ -1,3 +1,4 @@
+
 # Portfolio Website
 
 Dies ist eine kleine Übungsseite aus meiner Umschulung zum Fachinformatiker Anwendungsentwicklung (2025–2027).  
@@ -19,6 +20,7 @@ Die Seite soll meinen aktuellen Lernstand zeigen. Ich bin im 6. Monat der Umschu
 - Preset-Button für Wechselkurse  
 - Light/Dark-Mode Umschalter  
 - weitere kleine JavaScript-Demos
+  
 
 ## Kontakt
 Benjamin Bannach  
