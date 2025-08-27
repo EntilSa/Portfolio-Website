@@ -22,7 +22,6 @@ Die Seite soll meinen aktuellen Lernstand zeigen. Ich bin im 6. Monat der Umschu
 
 ## Screenshot
 ![Seitenansicht](assets/preview.png)  
-*(Screenshot folgt noch.)*
 
 ## Kontakt
 Benjamin Bannach  
