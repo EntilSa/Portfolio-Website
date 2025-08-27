@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Benjamin Bannach - Übungen & kleine Tools</title>
+  <meta name="description" content="Kleine JS-Übungen: Preisrechner, Währungsrechner, The Magic Button.">
+  <style>
+    :root { --bg:#0f172a; --card:#111827; --ink:#e5e7eb; --muted:#94a3b8; --acc:#60a5fa; --ok:#34d399; --warn:#f59e0b; }
+
+    *{ box-sizing:border-box }
+    body{ margin:0; font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,Helvetica,Arial; background:linear-gradient(180deg,#0b1220,#0f172a); color:var(--ink); }
+    header{ padding:24px 16px; text-align:center; }
+    header h1{ margin:0 0 6px; font-size:clamp(22px,3vw,34px) }
+    header p{ margin:0; color:var(--muted) }
+
+    .wrap{ max-width:1000px; margin:0 auto; padding:0 16px 40px; }
+    .grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:16px; }
+
+    .card{ background:linear-gradient(180deg,#0d1323,#0b0f1c); border:1px solid #1f2937; border-radius:14px; padding:16px; box-shadow:0 8px 24px rgba(0,0,0,.25); }
+    .card h2{ margin:0 0 10px; font-size:18px }
+    .card p{ color:var(--muted); margin:.2rem 0 1rem }
+
+    label{ display:block; font-size:14px; color:var(--muted); margin:.25rem 0 .15rem }
+    input, select, button{ width:100%; padding:10px 12px; border-radius:10px; border:1px solid #233047; background:#0b1220; color:var(--ink); }
+    input:focus, select:focus{ outline:2px solid var(--acc); border-color:transparent }
+    .row{ display:grid; grid-template-columns:1fr 1fr; gap:10px }
+
+    .out{ background:#0b1220; border:1px dashed #2b3a57; border-radius:10px; padding:10px; font-family:ui-monospace,Consolas,Menlo,monospace; }
+    .small{ font-size:12px; color:var(--muted) }
+    .ok{ color:var(--ok) } .warn{ color:var(--warn) }
+    footer{ text-align:center; color:var(--muted); font-size:12px; margin-top:24px }
+
+    /* FX Layout */
+    .fx-grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+    .fx-grid-3{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; }
+    .fx-actions{ display:flex; justify-content:flex-end; gap:10px; }
+    .fx-out{ line-height:1.8; }
+    .fx-out hr{ border:none; border-top:1px dashed #2b3a57; margin:10px 0; }
+    @media (max-width:720px){ .fx-grid-2,.fx-grid-3{ grid-template-columns:1fr } .row{ grid-template-columns:1fr } }
+
+    /* Dezente 3D-Buttons (nur für Aktion) */
+    #btnProfit, #btnFx{
+      position:relative; cursor:pointer; font-weight:600; border-radius:12px;
+      border:1px solid #233047;
+      background:linear-gradient(180deg,#12203a,#0b1220);
+      box-shadow:0 6px 0 #0a1426, 0 2px 10px rgba(0,0,0,.35);
+      transition:transform .08s ease, box-shadow .08s ease, filter .08s ease;
+    }
+    #btnProfit::before, #btnFx::before{
+      content:""; position:absolute; inset:0; border-radius:inherit;
+      background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,0)); pointer-events:none;
+    }
+    #btnProfit:hover, #btnFx:hover{ transform:translateY(-1px); filter:brightness(1.03); box-shadow:0 7px 0 #0a1426, 0 4px 14px rgba(0,0,0,.45); }
+    #btnProfit:active, #btnFx:active{ transform:translateY(2px); box-shadow:0 2px 0 #0a1426, 0 1px 6px rgba(0,0,0,.35) inset; }
+    #btnProfit:focus-visible, #btnFx:focus-visible{ outline:2px solid var(--acc); outline-offset:2px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Benjamin Bannach - Übungen & kleine Tools</h1>
+    <p class="small">Umschulung Fachinformatiker Anwendungsentwicklung (02/2025-02/2027) · Duisburg</p>
+  </header>
+
+  <div class="wrap">
+    <div class="grid">
+
+      <!-- Tool 1: Preis-/Gewinnrechner (vereinfacht) -->
+      <section class="card" id="profit">
+        <h2>Preis-/Gewinnrechner</h2>
+        <p>Berechnung mit Brutto-Verkaufspreis, Gebühren (netto), Versand (netto) und Einkauf (netto). USt-Standard 19 %.</p>
+
+        <div class="row">
+          <div><label for="sell">Verkaufspreis (Brutto)</label><input id="sell" type="number" step="0.01" value="29.90"></div>
+          <div><label for="vatSell">USt-Satz (%)</label><input id="vatSell" type="number" step="0.1" value="19.0"></div>
+        </div>
+
+        <div class="row">
+          <div><label for="cost">Einkauf (Netto)</label><input id="cost" type="number" step="0.01" value="12.00"></div>
+          <div><label for="ship">Versand (Netto)</label><input id="ship" type="number" step="0.01" value="4.50"></div>
+        </div>
+
+        <div class="row">
+          <div><label for="feePct">Gebühr (%)</label><input id="feePct" type="number" step="0.1" value="12.0"></div>
+          <div><label for="feeFix">Fixe Gebühr (€)</label><input id="feeFix" type="number" step="0.01" value="0.35"></div>
+        </div>
+
+        <div style="margin-top:10px"><button id="btnProfit" type="button">Berechnen</button></div>
+
+        <div class="out" id="profitOut"></div>
+        <p class="small">Annahme: Prozentgebühr auf Brutto; USt nur auf Verkauf.</p>
+      </section>
+
+      <!-- Tool 2: Währungsrechner (manuelle Kurse) -->
+      <section class="card" id="fx">
+        <h2>Währungsrechner</h2>
+        <p>Betrag + Quellwährung eingeben. Kurse unten pflegen (Basis: 1 EUR = …).</p>
+
+        <div class="fx-grid-2">
+          <div>
+            <label for="fxAmount">Betrag</label>
+            <input id="fxAmount" type="number" step="0.01" min="0" value="100.00">
+          </div>
+          <div>
+            <label for="fxBase">Währung</label>
+            <select id="fxBase">
+              <option value="EUR">EUR - Euro</option>
+              <option value="USD">USD - US-Dollar</option>
+              <option value="GBP">GBP - Pfund</option>
+              <option value="CNY">CNY - Yuan</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="out fx-out" id="fxOut" style="margin-top:10px"></div>
+
+        <p class="small" style="margin-top:10px"><strong>Kurse:</strong> 1 EUR = …</p>
+        <div class="fx-grid-3">
+          <div><label for="rateUSD">USD pro EUR</label><input id="rateUSD" type="number" step="0.0001" value="1.1656"></div>
+          <div><label for="rateGBP">GBP pro EUR</label><input id="rateGBP" type="number" step="0.0001" value="0.8642"></div>
+          <div><label for="rateCNY">CNY pro EUR</label><input id="rateCNY" type="number" step="0.0001" value="8.3427"></div>
+        </div>
+
+        <div class="fx-actions" style="margin-top:10px">
+          <button id="btnFx" type="button">Umrechnen</button>
+        </div>
+        <p class="small">Hinweis: Rechnet auch automatisch bei jeder Eingabe; der Button ist optional.</p>
+      </section>
+
+      <!-- Tool 3: The Magic Button -->
+      <section class="card" id="fun">
+        <h2>The Magic Button</h2>
+        <p>Kleiner Hover-Effekt (Event-Handling/DOM).</p>
+        <button class="ghost-btn" id="trickyBtn" type="button">Fang mich 😊</button>
+      </section>
+
+    </div>
+    <footer>© <span id="year"></span> Benjamin Bannach</footer>
+  </div>
+
+  <script>
+    // Datum im Header
+    (function(){ 
+      var d = new Date(); 
+      document.getElementById('year').textContent = d.getFullYear();
+    })();
+
+    // -------- Preis-/Gewinnrechner --------
+    function formatEuro(n){ return n.toLocaleString('de-DE',{style:'currency',currency:'EUR'}); }
+    function berechneProfit(){
+      var brutto   = parseFloat(document.getElementById('sell').value || "0");
+      var ust      = parseFloat(document.getElementById('vatSell').value || "0");
+      var ek       = parseFloat(document.getElementById('cost').value || "0");
+      var versand  = parseFloat(document.getElementById('ship').value || "0");
+      var feePct   = parseFloat(document.getElementById('feePct').value || "0");
+      var feeFix   = parseFloat(document.getElementById('feeFix').value || "0");
+
+      var ustBetrag   = brutto - (brutto / (1 + ust/100));
+      var gebuehrPct  = brutto * (feePct/100);
+      var gebuehren   = gebuehrPct + feeFix;
+
+      var nachGebUstVers = brutto - gebuehren - ustBetrag - versand;
+      var nachEinkauf     = nachGebUstVers - ek;
+
+      document.getElementById('profitOut').innerHTML =
+        'Erlöse nach Abzug von Gebühren, Mehrwertsteuer und Versandkosten: <strong>' + formatEuro(nachGebUstVers) + '</strong><br>' +
+        'Erlöse nach Abzug von Einkaufspreis: <strong>' + formatEuro(nachEinkauf) + '</strong>';
+    }
+    document.getElementById('btnProfit').addEventListener('click', berechneProfit);
+    berechneProfit();
+
+    // -------- Währungsrechner --------
+    function zahl(v){ return parseFloat(String(v||"0").replace(",", ".")); }
+    function holeZahl(id){ return zahl(document.getElementById(id).value); }
+    function holeKurse(){
+      return { EUR:1, USD:holeZahl('rateUSD'), GBP:holeZahl('rateGBP'), CNY:holeZahl('rateCNY') };
+    }
+    function formatBetrag(n,cc){
+      try{ return new Intl.NumberFormat('de-DE',{style:'currency',currency:cc}).format(n); }
+      catch(e){ return (isFinite(n)? n.toFixed(2): n)+' '+cc; }
+    }
+    function berechneWaehrung(){
+      var betrag = zahl(document.getElementById('fxAmount').value);
+      var basis  = document.getElementById('fxBase').value; // EUR|USD|GBP|CNY
+      var r      = holeKurse();
+      if(!r.USD || !r.GBP || !r.CNY){ document.getElementById('fxOut').innerHTML='Bitte Kurse prüfen.'; return; }
+
+      // in EUR umrechnen (1 EUR = r[basis] basis => 1 basis = 1/r[basis] EUR)
+      var betragEUR = (basis==='EUR') ? betrag : betrag / r[basis];
+
+      var alle = ['EUR','USD','GBP','CNY'];
+      var zeileOben = alle.filter(function(cc){ return cc!==basis; })
+                          .map(function(cc){ return cc+': <strong>'+formatBetrag(betragEUR*r[cc], cc)+'</strong>'; })
+                          .join(' · ');
+      var zeileAlle = alle.map(function(cc){
+                        var v = betragEUR*r[cc];
+                        return cc+': <strong>'+formatBetrag(v, cc)+'</strong>'+(cc===basis?' (Basis)':'');
+                      }).join(' · ');
+
+      document.getElementById('fxOut').innerHTML =
+        '<div><span class="small">Ausgang:</span> <strong>'+formatBetrag(betrag, basis)+'</strong></div>'+
+        '<div>'+zeileOben+'</div>'+
+        '<hr>'+
+        '<div class="small">Alle Währungen: <br>'+zeileAlle+'</div>';
+    }
+    document.getElementById('btnFx').addEventListener('click', berechneWaehrung);
+    ['fxAmount','fxBase','rateUSD','rateGBP','rateCNY'].forEach(function(id){
+      var el = document.getElementById(id);
+      el.addEventListener('input', berechneWaehrung);
+      el.addEventListener('change', berechneWaehrung);
+    });
+    berechneWaehrung();
+
+    // -------- The Magic Button --------
+    (function(){
+      var btn = document.getElementById('trickyBtn');
+      btn.addEventListener('mousemove', function(e){
+        var r = btn.getBoundingClientRect(), pad = 30;
+        if (e.clientX > r.left-pad && e.clientX < r.right+pad && e.clientY > r.top-pad && e.clientY < r.bottom+pad){
+          var parent = btn.parentElement.getBoundingClientRect();
+          var nx = Math.max(0, Math.min(parent.width - r.width, Math.random()*(parent.width - r.width)));
+          var ny = Math.max(0, Math.min(parent.height - r.height, Math.random()*(parent.height - r.height)));
+          btn.style.position='relative'; btn.style.left = nx+'px'; btn.style.top = ny+'px';
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
